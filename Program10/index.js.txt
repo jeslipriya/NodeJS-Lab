@@ -1,0 +1,27 @@
+
+const express = require("express");
+
+const app = express();
+
+// Middleware to read JSON data
+app.use(express.json());
+
+// Import route modules
+const studentRoutes = require("./routes/studentRoutes");
+const userRoutes = require("./routes/userRoutes");
+
+// Use modular routes
+app.use("/students", studentRoutes);
+app.use("/users", userRoutes);
+
+// Home route
+app.get("/", (req, res) => {
+    res.send("Express Modular Routing Application");
+});
+
+// Start server
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
